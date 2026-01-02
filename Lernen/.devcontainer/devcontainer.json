@@ -1,0 +1,26 @@
+{
+	"name": "Lernen LMS (Hybrid)",
+	"image": "mcr.microsoft.com/devcontainers/php:1-8.2-bullseye",
+
+	"features": {
+		// 1. Install Node.js for your frontend upgrade
+		"ghcr.io/devcontainers/features/node:1": {},
+		
+		// 2. Install Git and common utilities
+		"ghcr.io/devcontainers/features/common-utils:2": {
+			"installZsh": true,
+			"username": "vscode"
+		}
+	},
+
+	// 3. Install PHP extensions needed for Laravel & MySQL connection
+	"postCreateCommand": "docker-php-ext-install pdo pdo_mysql bcmath zip",
+
+	"forwardPorts": [8000, 5173], 
+
+	"remoteUser": "vscode",
+    
+    // 4. PODMAN SPECIFIC SETTINGS
+    // This permission fix is needed for Podman on Windows
+    "runArgs": ["--userns=keep-id"]
+}
