@@ -28,6 +28,23 @@ use App\Livewire\Pages\Tutor\ManageSessions\SessionDetail;
 use App\Livewire\Payouts;
 use Illuminate\Support\Facades\Route;
 
+// Homepage Route
+Route::get('/', function () {
+    if (auth()->check()) {
+        // If authenticated, redirect based on role
+        $user = auth()->user();
+        if ($user->hasRole('tutor')) {
+            return redirect()->route('tutor.dashboard');
+        } elseif ($user->hasRole('admin')) {
+            return redirect()->route('admin.dashboard');
+        } else {
+            return redirect()->route('student.dashboard');
+        }
+    }
+    // If not authenticated, show the find tutors page
+    return redirect()->route('find-tutors');
+})->name('home');
+
 Route::get('auth/{provider}', [SocialController::class, 'redirect'])->name('social.redirect');
 Route::get('auth/{provider}/callback', [SocialController::class, 'callback'])->name('social.callback');
 Route::view('language-translator', 'language-translator');
