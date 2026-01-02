@@ -2317,7 +2317,7 @@ if (!function_exists('isDemoSite')) {
     function isDemoSite()
     {
         $serverName = !empty($_SERVER["SERVER_NAME"]) ? $_SERVER["SERVER_NAME"] :  parse_url(config('app.url'), PHP_URL_HOST);
-        if (in_array($serverName, array('lernen.amentotech.com'))) {
+        if (in_array($serverName, array('polytronx.amentotech.com'))) {
             return true;
         } else {
             return false;
@@ -2447,7 +2447,7 @@ if (!function_exists('getAddons')) {
     {
         $response = Http::withHeaders([
             'User-Agent' => request()->header('User-Agent'),
-        ])->get('https://lernen.amentotech.com/addons.json');
+        ])->get('https://polytronx.amenotech.com/addons.json');
 
         if ($response->successful()) {
             return $response->json();

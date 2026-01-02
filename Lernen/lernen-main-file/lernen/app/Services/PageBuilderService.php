@@ -408,7 +408,7 @@ class PageBuilderService {
                         'step_image'            => '',
                         'scnd_step_image'       => [uploadObMedia('demo-content/home-v2/banner/image-07.webp')],
                         'image_verient'         => '',
-                        'step_heading'          => 'Signup Lernen',
+                        'step_heading'          => 'Signup PolytronX',
                         'step_paragraph'        => 'Easily create an account by providing basic details to unlock access to a world of learning opportunities.',
                         'learn_more_btn_url'    => route('register'),
                         'learn_more_btn_txt'    => 'Learn more'
@@ -445,8 +445,8 @@ class PageBuilderService {
                         'step_image'            => [uploadObMedia('demo-content/gif/signup.gif')],
                         'scnd_step_image'       => [uploadObMedia('demo-content/gif/signup.png')],
                         'image_verient'         => 'am-step-warning',
-                        'step_heading'          => 'Signup Lernen at no cost & verify your account',
-                        'step_paragraph'        => 'Sign up for Lernen free, verify your account, and unlock full access to start your learning journey.',
+                        'step_heading'          => 'Signup PolytronX at no cost & verify your account',
+                        'step_paragraph'        => 'Sign up for PolytronX free, verify your account, and unlock full access to start your learning journey.',
                         'learn_more_btn_url'    => route('register'),
                         'learn_more_btn_txt'    => 'Learn more'
                     ],
@@ -676,8 +676,8 @@ class PageBuilderService {
         return [
             'select_verient'    => ['value' => $selectVerient, 'is_array' => 0],
             'pre_heading'       => ['value' => $page->slug == 'home-nine' ? '' : 'Coming Soon', 'is_array' => 0],
-            'heading'           => ['value' => 'Lernen Mobile App <em>Available!</em>', 'is_array' => 0],
-            'paragraph'         => ['value' => 'Take your learning on the go with the Lernen mobile app. Access all your courses, connect with tutors & track your progress.', 'is_array' => 0],
+            'heading'           => ['value' => 'PolytronX Mobile App <em>Available!</em>', 'is_array' => 0],
+            'paragraph'         => ['value' => 'Take your learning on the go with the PolytronX mobile app. Access all your courses, connect with tutors & track your progress.', 'is_array' => 0],
             'app_store_image'   => ['value' => $appStoreImage, 'is_array' => '1'],
             'apple_store_url'   => ['value' => '#', 'is_array' => 0],
             'google_image'      => ['value' => $googleImage, 'is_array' => '1'],
