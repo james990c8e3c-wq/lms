@@ -22,5 +22,8 @@
     
     // 4. PODMAN SPECIFIC SETTINGS
     // This permission fix is needed for Podman on Windows
-    "runArgs": ["--userns=keep-id"]
+    "runArgs": ["--userns=keep-id"],
+
+    // Start auto-sync watcher automatically on container start (set AUTO_SYNC=false to disable)
+    "postStartCommand": "bash /workspaces/lms/scripts/auto_sync_start.sh || true"
 }
