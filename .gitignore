@@ -1,1 +1,11 @@
 Lernen/lernen-main-file/upgrade/upgrade.zip
+
+# Auto-sync sensible excludes
+.env
+.env.*
+node_modules/
+vendor/
+storage/
+*.log
+.DS_Store
+.vscode/
