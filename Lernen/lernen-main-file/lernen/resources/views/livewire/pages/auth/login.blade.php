@@ -6,7 +6,6 @@ use Livewire\Attributes\Layout;
 use Livewire\Volt\Component;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
 
 new #[Layout('layouts.guest')] class extends Component
 {
@@ -40,9 +39,8 @@ new #[Layout('layouts.guest')] class extends Component
             ? route('session-detail', encrypt($this->id))
             : auth()->user()->redirect_after_login;
         
-        // Use Laravel redirect facade instead of Livewire redirect to ensure session is properly committed
-        return Redirect::to($redirectUrl);
-    }
+        // Dispatch JavaScript to redirect after session is fully committed (500ms delay)
+        $this->dispatch('perform-redirect', url: $redirectUrl);
 
     public function redirectGoogle() 
     {
@@ -184,6 +182,17 @@ new #[Layout('layouts.guest')] class extends Component
                 togglePassword.classList.add('am-icon-eye-open-01');
             }
         });
+    });
+
+    // Listen for login redirect event
+    Livewire.on('perform-redirect', (event) => {
+        const url = event[0]?.url || event.url;
+        if (url) {
+            // Wait 500ms to ensure session is committed before navigating
+            setTimeout(() => {
+                window.location.href = url;
+            }, 500);
+        }
     });
 </script>
 @endpush
