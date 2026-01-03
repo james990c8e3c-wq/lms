@@ -125,5 +125,35 @@ class RolePermissionsSeeder extends Seeder
             $permissionIds = Permission::whereIn('name', $permissions)->pluck('id')->toArray();
             $subAdminRole->permissions()->sync($permissionIds);
         }
+
+        // Assign tutor-specific permissions to tutor role
+        $this->assignTutorPermissions();
+    }
+
+    private function assignTutorPermissions(): void
+    {
+        $tutorPermissions = [
+            'can-manage-subjects',
+            'can-manage-subject-groups',
+            'can-manage-bookings',
+            'can-manage-withdraw-requests',
+            'can-manage-commission-settings',
+            'can-manage-payment-methods',
+            'can-manage-create-blogs',
+            'can-manage-all-blogs',
+            'can-manage-update-blogs',
+            'can-manage-blog-categories',
+            'can-manage-reviews',
+            'can-manage-invoices',
+            'can-manage-dispute',
+        ];
+
+        // Get or create tutor role
+        $tutorRole = Role::where('name', 'tutor')->first();
+        if ($tutorRole) {
+            // Sync tutor-specific permissions to tutor role
+            $permissionIds = Permission::whereIn('name', $tutorPermissions)->pluck('id')->toArray();
+            $tutorRole->permissions()->sync($permissionIds);
+        }
     }
 }
