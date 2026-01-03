@@ -16,6 +16,8 @@ class RolePermissionsSeeder extends Seeder
         $this->createRoles();
         $this->createPermissions();
         $this->assignPermissionsToRoles();
+        $this->assignTutorPermissions();
+        $this->assignStudentPermissions();
     }
 
     private function createRoles(): void
