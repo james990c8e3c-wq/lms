@@ -6,6 +6,7 @@ use Livewire\Attributes\Layout;
 use Livewire\Volt\Component;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 new #[Layout('layouts.guest')] class extends Component
 {
@@ -33,12 +34,14 @@ new #[Layout('layouts.guest')] class extends Component
         session()->save();
 
         $this->dispatch('showAlertMessage', type: 'success', title: __('general.success_title') , message: __('general.login_success'));
-        usleep(1000);
-        if($this->id != '' && auth()->user()->role == 'student'){
-            $this->redirect(route('session-detail', encrypt($this->id)));
-        }else {
-            $this->redirect(auth()->user()->redirect_after_login);
-        }
+        
+        // Determine redirect URL
+        $redirectUrl = $this->id != '' && auth()->user()->role == 'student'
+            ? route('session-detail', encrypt($this->id))
+            : auth()->user()->redirect_after_login;
+        
+        // Use Laravel redirect facade instead of Livewire redirect to ensure session is properly committed
+        return Redirect::to($redirectUrl);
     }
 
     public function redirectGoogle() 
