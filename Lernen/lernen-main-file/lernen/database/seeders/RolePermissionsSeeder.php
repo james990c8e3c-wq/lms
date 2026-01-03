@@ -156,4 +156,22 @@ class RolePermissionsSeeder extends Seeder
             $tutorRole->permissions()->sync($permissionIds);
         }
     }
+
+    private function assignStudentPermissions(): void
+    {
+        $studentPermissions = [
+            'can-manage-bookings',
+            'can-manage-reviews',
+            'can-manage-invoices',
+            'can-manage-dispute',
+        ];
+
+        // Get or create student role
+        $studentRole = Role::where('name', 'student')->first();
+        if ($studentRole) {
+            // Sync student-specific permissions to student role
+            $permissionIds = Permission::whereIn('name', $studentPermissions)->pluck('id')->toArray();
+            $studentRole->permissions()->sync($permissionIds);
+        }
+    }
 }
