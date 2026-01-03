@@ -72,7 +72,7 @@ class DefaultSettingSeeder extends Seeder
                 'join_lernen_link'             => 'Join PolytronX',
                 'join_lernen_link_url'         => 'register',
                 'footer_paragraph'              => 'PolytronX is the top online tutoring platform for children, dedicated to connecting each student with their perfect tutor. With a network of over 1 million qualified tutors, we provide exceptional tutoring in every school subject.',
-                'footer_contact'                => '(316) 555-0116',
+                'footer_contact'                => '+92 321 4261 950',
                 'footer_email'                  => 'hello@gmail.com',
                 'footer_address'                => '4517 Washington Ave. Manchester, Kentucky 39495',
                 'footer_button_text'            => 'Join us for free',
