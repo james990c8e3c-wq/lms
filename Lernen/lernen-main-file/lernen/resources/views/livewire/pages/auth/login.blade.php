@@ -30,10 +30,10 @@ new #[Layout('layouts.guest')] class extends Component
 
         $this->form->authenticate();
         Session::regenerate();
-
+        session()->save();
 
         $this->dispatch('showAlertMessage', type: 'success', title: __('general.success_title') , message: __('general.login_success'));
-        usleep(500);
+        usleep(1000);
         if($this->id != '' && auth()->user()->role == 'student'){
             $this->redirect(route('session-detail', encrypt($this->id)));
         }else {
